@@ -2,7 +2,7 @@ from skimage.io import imread
 from skimage.filters import threshold_otsu
 import matplotlib.pyplot as plt
 
-filename = 'C:/Users/Apoorva/PycharmProjects/LicensePlateDetector/video12.mp4'
+filename = 'C:/Users/Apoorva/PycharmProjects/LicensePlateDetector/video15.mp4'
 
 import cv2
 cap = cv2.VideoCapture(filename)
@@ -25,7 +25,7 @@ cv2.destroyAllWindows()
 import imutils
 car_image = imread("./output/frame%d.jpg"%(count-1), as_gray=True)
 car_image = imutils.rotate(car_image, 270)
-# car_image = imread("car8.jpg", as_gray=True)
+# car_image = imread("car5.jpg", as_gray=True)
 # it should be a 2 dimensional array
 print(car_image.shape)
 
