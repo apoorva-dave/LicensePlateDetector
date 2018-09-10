@@ -2,7 +2,7 @@ from skimage.io import imread
 from skimage.filters import threshold_otsu
 import matplotlib.pyplot as plt
 
-filename = 'C:/Users/Apoorva/PycharmProjects/LicensePlateDetector/video14.mp4'
+filename = 'C:/Users/Apoorva/PycharmProjects/LicensePlateDetector/video12.mp4'
 
 import cv2
 cap = cv2.VideoCapture(filename)
@@ -18,14 +18,14 @@ while cap.isOpened():
             break
     else:
         break
-# cap.release()
+cap.release()
 cv2.destroyAllWindows()
 
 # car image -> grayscale image -> binary image
 import imutils
 car_image = imread("./output/frame%d.jpg"%(count-1), as_gray=True)
 car_image = imutils.rotate(car_image, 270)
-# car_image = imread("car6.jpg", as_gray=True)
+# car_image = imread("car8.jpg", as_gray=True)
 # it should be a 2 dimensional array
 print(car_image.shape)
 
@@ -38,7 +38,7 @@ fig, (ax1, ax2) = plt.subplots(1, 2)
 ax1.imshow(gray_car_image, cmap="gray")
 threshold_value = threshold_otsu(gray_car_image)
 binary_car_image = gray_car_image > threshold_value
-print(binary_car_image)
+# print(binary_car_image)
 ax2.imshow(binary_car_image, cmap="gray")
 # ax2.imshow(gray_car_image, cmap="gray")
 plt.show()
@@ -53,7 +53,9 @@ import matplotlib.patches as patches
 
 # this gets all the connected regions and groups them together
 label_image = measure.label(binary_car_image)
-print(label_image.shape[0])
+
+# print(label_image.shape[0]) #width of car img
+
 # getting the maximum width, height and minimum width and height that a license plate can be
 plate_dimensions = (0.03*label_image.shape[0], 0.08*label_image.shape[0], 0.15*label_image.shape[1], 0.3*label_image.shape[1])
 plate_dimensions2 = (0.08*label_image.shape[0], 0.2*label_image.shape[0], 0.15*label_image.shape[1], 0.4*label_image.shape[1])
@@ -66,6 +68,7 @@ ax1.imshow(gray_car_image, cmap="gray")
 flag =0
 # regionprops creates a list of properties of all the labelled regions
 for region in regionprops(label_image):
+    # print(region)
     if region.area < 50:
         #if the region is so small then it's likely not a license plate
         continue
@@ -78,8 +81,8 @@ for region in regionprops(label_image):
 
     region_height = max_row - min_row
     region_width = max_col - min_col
-    print(region_height)
-    print(region_width)
+    # print(region_height)
+    # print(region_width)
 
     # ensuring that the region identified satisfies the condition of a typical license plate
     if region_height >= min_height and region_height <= max_height and region_width >= min_width and region_width <= max_width and region_width > region_height:
@@ -93,7 +96,7 @@ for region in regionprops(label_image):
         ax1.add_patch(rectBorder)
         # let's draw a red rectangle over those regions
 if(flag == 1):
-    print(plate_like_objects[0])
+    # print(plate_like_objects[0])
     plt.show()
 
 
@@ -121,12 +124,12 @@ if(flag==0):
 
         region_height = max_row - min_row
         region_width = max_col - min_col
-        print(region_height)
-        print(region_width)
+        # print(region_height)
+        # print(region_width)
 
         # ensuring that the region identified satisfies the condition of a typical license plate
         if region_height >= min_height and region_height <= max_height and region_width >= min_width and region_width <= max_width and region_width > region_height:
-            print("hello")
+            # print("hello")
             plate_like_objects.append(binary_car_image[min_row:max_row,
                                       min_col:max_col])
             plate_objects_cordinates.append((min_row, min_col,
@@ -135,5 +138,5 @@ if(flag==0):
                                            linewidth=2, fill=False)
             ax1.add_patch(rectBorder)
             # let's draw a red rectangle over those regions
-    print(plate_like_objects[0])
+    # print(plate_like_objects[0])
     plt.show()

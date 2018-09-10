@@ -9,9 +9,6 @@ import DetectPlate
 # The invert was done so as to convert the black pixel to white pixel and vice versa
 license_plate = np.invert(DetectPlate.plate_like_objects[0])
 
-# print("license plate")
-# print(license_plate)
-# exit(0)
 labelled_plate = measure.label(license_plate)
 
 fig, ax1 = plt.subplots(1)
@@ -45,5 +42,5 @@ for regions in regionprops(labelled_plate):
 
         # this is just to keep track of the arrangement of the characters
         column_list.append(x0)
-print(characters)
+# print(characters)
 plt.show()

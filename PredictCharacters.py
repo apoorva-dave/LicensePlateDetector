@@ -1,6 +1,4 @@
-import os
 import SegmentCharacters
-from sklearn.externals import joblib
 import pickle
 print("Loading model")
 filename = 'C:/Users/Apoorva/PycharmProjects/LicensePlateDetector/finalized_model.sav'
