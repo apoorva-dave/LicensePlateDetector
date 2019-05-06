@@ -19,7 +19,7 @@ def read_training_data(training_directory):
         for each in range(10):
             image_path = os.path.join(training_directory, each_letter, each_letter + '_' + str(each) + '.jpg')
             # read each image of each character
-            img_details = imread(image_path, as_grey=True)
+            img_details = imread(image_path, as_gray=True)
             # converts each character image to binary image
             binary_image = img_details < threshold_otsu(img_details)
             # the 2D array of each image is flattened because the machine learning
@@ -50,7 +50,7 @@ def cross_validation(model, num_of_fold, train_data, train_label):
 #
 # training_dataset_dir = os.path.join(current_dir, 'train')
 print('reading data')
-training_dataset_dir = 'C:/Users/Apoorva/PycharmProjects/LicensePlateDetector/train20X20'
+training_dataset_dir = './train20X20'
 image_data, target_data = read_training_data(training_dataset_dir)
 print('reading data completed')
 
@@ -76,6 +76,6 @@ svc_model.fit(image_data, target_data)
 
 import pickle
 print("model trained.saving model..")
-filename = 'C:/Users/Apoorva/PycharmProjects/LicensePlateDetector/finalized_model.sav'
+filename = './finalized_model.sav'
 pickle.dump(svc_model, open(filename, 'wb'))
 print("model saved")
