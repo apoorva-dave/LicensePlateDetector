@@ -2,7 +2,6 @@ import os
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.model_selection import cross_val_score
-from sklearn.externals import joblib
 from skimage.io import imread
 from skimage.filters import threshold_otsu
 
@@ -65,14 +64,6 @@ print('training model')
 
 # let's train the model with all the input data
 svc_model.fit(image_data, target_data)
-
-# we will use the joblib module to persist the model
-# into files. This means that the next time we need to
-# predict, we don't need to train the model again
-# save_directory = os.path.join(current_dir, 'models/svc/')
-# if not os.path.exists(save_directory):
-#     os.makedirs(save_directory)
-# joblib.dump(svc_model, save_directory+'/svc.pkl')
 
 import pickle
 print("model trained.saving model..")
