@@ -1,10 +1,22 @@
 from skimage.io import imread
 from skimage.filters import threshold_otsu
 import matplotlib.pyplot as plt
+import imutils
+import cv2
 
+from skimage import measure
+from skimage.measure import regionprops
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import os
+import shutil
 filename = './video12.mp4'
 
-import cv2
+if os.path.exists('output'):
+    shutil.rmtree('output')
+
+os.makedirs('output')
+
 cap = cv2.VideoCapture(filename)
 # cap = cv2.VideoCapture(0)
 count = 0
@@ -20,9 +32,8 @@ while cap.isOpened():
         break
 cap.release()
 cv2.destroyAllWindows()
-
+#
 # car image -> grayscale image -> binary image
-import imutils
 car_image = imread("./output/frame%d.jpg"%(count-1), as_gray=True)
 car_image = imutils.rotate(car_image, 270)
 # car_image = imread("car.png", as_gray=True)
@@ -45,11 +56,6 @@ plt.show()
 
 # CCA (finding connected regions) of binary image
 
-
-from skimage import measure
-from skimage.measure import regionprops
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 
 # this gets all the connected regions and groups them together
 label_image = measure.label(binary_car_image)
