@@ -43,27 +43,7 @@ Running PredictCharacters.py first gives grayscale and binary image. Then produc
 
 ## Screenshots
 
-1. Car Video 
-
->Original frame of video
-
-
-![fram35](https://user-images.githubusercontent.com/19779081/45311494-e3dc3d80-b546-11e8-86b3-ea1815f8e7f8.jpg)
-
->License Plate Detected
-
-![out](https://user-images.githubusercontent.com/19779081/45310686-9e1e7580-b544-11e8-8445-5d18496e23ba.png)
-
->Segmented Characters
-
-![out](https://user-images.githubusercontent.com/19779081/45310754-cefeaa80-b544-11e8-9e17-be92cb7eb183.png)
-
->Predicted Value
-
-![out](https://user-images.githubusercontent.com/19779081/45310789-e2aa1100-b544-11e8-94cd-a5bbdc2e7888.PNG)
-
-
-2. Car Image
+1. Car Image
 
 
 >Original Image
